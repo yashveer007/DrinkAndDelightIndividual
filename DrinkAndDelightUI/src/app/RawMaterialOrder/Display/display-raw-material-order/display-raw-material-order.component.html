@@ -1,0 +1,98 @@
+<div class="jumbotron">
+    <div class="text-center">
+        <h3>Display Raw Material Order Details</h3>
+    </div>
+    <form #displayRawMaterialOrderForm="ngForm" (ngSubmit)= "displayRawMaterialOrder(displayRawMaterialOrderForm)">
+        <div class="form-group row">
+            <label for="supplierId" class="col-sm-2 col-form-label"> Supplier ID :</label>
+            <select class="form-control" id="supplierId" #supplierId="ngModel" class="col-sm-4 col-form-label" name="supplierId" ngModel required>
+              <option selected value="">Choose Supplier Id</option>
+              <option *ngFor="let supplierId of supplierIds" value="{{supplierId}}">{{supplierId}}</option>
+            </select>
+            <div *ngIf="supplierId.invalid && (supplierId.dirty || supplierId.touched)" class="alert alert-danger">
+                <small *ngIf="supplierId.errors.required">
+                    Please choose the Supplier Id.
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="deliveryStatus" class="col-sm-2 col-form-label"> Delivery Status :</label>
+            <select class="form-control" id="deliveryStatus" #deliveryStatus="ngModel" class="col-sm-4 col-form-label" name="deliveryStatus" ngModel required>
+              <option selected value="">Choose Delivery Status </option>
+              <option *ngFor="let deliveryStatus of deliveryStatuses" value="{{deliveryStatus}}">{{deliveryStatus}}</option>
+            </select>
+            <div *ngIf="deliveryStatus.invalid && (deliveryStatus.dirty || deliveryStatus.touched)" class="alert alert-danger">
+                <small *ngIf="deliveryStatus.errors.required">
+                    Please choose the Delivery Status .
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="startDate" class="col-2 col-form-label"> Start Date :</label>
+            <input class="col-sm-4 form-control" type="Date" #startDate="ngModel" placeholder="dd-MM-yyyy" id="startDate" max={{date}} name="startDate" ngModel required>
+            <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="alert alert-danger">
+                <small *ngIf="startDate.invalid == true && startDate.errors.required" >
+                        Start Date  is required
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="endDate" class="col-2 col-form-label">End Date(Optional) :</label>
+            <input class="col-sm-4 form-control" type="Date" #endDate="ngModel" placeholder="dd-MM-yyyy"  id="endDate" max={{date}} name="endDate"  format="yyyy-MM-dd" value="2030-05-05" ngModel>
+            <div *ngIf="endDate.invalid && (endDate.dirty || endDate.touched)" class="alert alert-danger">
+                <small *ngIf="endDate.invalid == true && endDate.errors.required && dateError == false" >
+                        End Date  is greater than Start Date
+                </small>
+            </div>
+        </div>
+        <button [disabled]="displayRawMaterialOrderForm.form.invalid" class="btn btn-primary"> Display Raw Material Order </button>
+      </form>
+</div>
+<div *ngIf=" rawMaterialOrderList != null">
+    <div class="jumbotron">
+        <div *ngIf=" error !=null">
+            <h3 class="text-danger" > We Do Not Found any Order for these particular details, Please Check and Fill the details Again.  </h3>
+        </div>
+        <div *ngFor=" let rawMaterialOrder of rawMaterialOrderList">
+            <table class="table table-dark">
+                <thead>
+                  <tr>            
+                    <th scope="col">S.No.</th>      
+                    <th scope="col">RawMaterial Id</th>
+                    <th scope="col">RawMaterial Name</th>
+                    <th scope="col">SupplierId</th>
+                    <th scope="col">Quantity Value</th>
+                    <th scope="col">Quantity Unit</th>
+                    <th scope="col">Date Of Order</th>
+                    <th scope="col">Date Of Delivery</th>
+                    <th scope="col">Price Per Unit</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Delivery Status</th>
+                    <th scope="col">Warehouse Id</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">#</th>
+                    <td>{{rawMaterialOrder.rmorderId}}</td>
+                    <td>{{rawMaterialOrder.rmName}}</td>
+                    <td>{{rawMaterialOrder.supplierId}}</td>
+                    <td>{{rawMaterialOrder.quantityUnit}}</td>
+                    <td>{{rawMaterialOrder.quantityValue}}</td>
+                    <td>{{rawMaterialOrder.dateOfOrder}}</td>
+                    <td>{{rawMaterialOrder.dateOfDelivery}}</td>
+                    <td>{{rawMaterialOrder.pricePerUnit}}</td>
+                    <td>{{rawMaterialOrder.totalPrice}}</td>
+                    <td>{{rawMaterialOrder.deliveryStatus}}</td>
+                    <td>{{rawMaterialOrder.warehouseID}}</td>
+                   </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+  </div>
+
+  
+  
+
+

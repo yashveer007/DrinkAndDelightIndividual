@@ -1,0 +1,90 @@
+<div class="jumbotron">
+    <div class="text-center">
+        <h3>Display Distributor Order Details</h3>
+    </div>
+    <form #displayProductOrderForm="ngForm" (ngSubmit)= "displayProductOrder(displayProductOrderForm)">
+        <div class="form-group row">
+            <label for="distributorId" class="col-sm-2 col-form-label"> Distributor ID :</label>
+            <select class="form-control" id="distributorId" #distributorId="ngModel" class="col-sm-4 col-form-label" name="distributorId" ngModel required>
+              <option selected value="">Choose Distributor Id</option>
+              <option *ngFor="let distributorId of distributorIds" value="{{distributorId}}">{{distributorId}}</option>
+            </select>
+            <div *ngIf="distributorId.invalid && (distributorId.dirty || distributorId.touched)" class="alert alert-danger">
+                <small *ngIf="distributorId.errors.required">
+                    Please choose the Distributor Id.
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="deliveryStatus" class="col-sm-2 col-form-label"> Delivery Status :</label>
+            <select class="form-control" id="deliveryStatus" #deliveryStatus="ngModel" class="col-sm-4 col-form-label" name="deliveryStatus" ngModel required>
+              <option selected value="">Choose Delivery Status </option>
+              <option *ngFor="let deliveryStatus of deliveryStatuses" value="{{deliveryStatus}}">{{deliveryStatus}}</option>
+            </select>
+            <div *ngIf="deliveryStatus.invalid && (deliveryStatus.dirty || deliveryStatus.touched)" class="alert alert-danger">
+                <small *ngIf="deliveryStatus.errors.required">
+                    Please choose the Delivery Status .
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="startDate" class="col-2 col-form-label"> Start Date :</label>
+            <input class="col-sm-4 form-control" type="Date" #startDate="ngModel" placeholder="dd-MM-yyyy" id="startDate" max={{date}} name="startDate" ngModel required>
+            <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="alert alert-danger">
+                <small *ngIf="startDate.invalid == true && startDate.errors.required" >
+                        Start Date  is required
+                </small>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="endDate" class="col-2 col-form-label">End Date(c) :</label>
+            <input class="col-sm-4 form-control" type="Date" #endDate="ngModel" placeholder="dd-MM-yyyy" id="endDate" max={{date}} name="endDate" ngModel>
+        </div>
+        <button [disabled]="displayProductOrderForm.form.invalid" class="btn btn-primary"> Display Product Order </button>
+      </form>
+</div>
+<div *ngIf=" productOrderList != null">
+    <div class="jumbotron">
+        <div *ngIf=" error !=null">
+            <h3 class="text-danger"> We Do Not Found any Order for these particular details, Please Check and Fill the details Again. </h3>
+        </div>
+        <div *ngFor=" let productOrder of productOrderList">
+            <table class="table table-dark">
+                <thead>
+                  <tr>            
+                    <th scope="col">S.No.</th>      
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Distributor Id</th>
+                    <th scope="col">Quantity Value</th>
+                    <th scope="col">Quantity Unit</th>
+                    <th scope="col">Date Of Order</th>
+                    <th scope="col">Date Of Delivery</th>
+                    <th scope="col">Price Per Unit</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Delivery Status</th>
+                    <th scope="col">Warehouse Id</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">#</th>
+                    <td>{{productOrder.orderId}}</td>
+                    <td>{{productOrder.name}}</td>
+                    <td>{{productOrder.distributorId}}</td>
+                    <td>{{productOrder.quantityUnit}}</td>
+                    <td>{{productOrder.quantityValue}}</td>
+                    <td>{{productOrder.dateOfOrder}}</td>
+                    <td>{{productOrder.dateOfDelivery}}</td>
+                    <td>{{productOrder.pricePerUnit}}</td>
+                    <td>{{productOrder.totalPrice}}</td>
+                    <td>{{productOrder.deliveryStatus}}</td>
+                    <td>{{productOrder.warehouseId}}</td>
+                   </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+  </div>
+ 
+

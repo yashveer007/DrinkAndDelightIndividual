@@ -1,0 +1,43 @@
+<div class="jumbotron">
+    <div class="text-center">
+        <h3>Display Distributor Details</h3>
+    </div>
+    <form #displayDistributorForm="ngForm" (ngSubmit)= "displayDistributor(displayDistributorForm)">
+      <div class="form-group row">
+        <label for="distributorId" class="col-sm-2 col-form-label"> Distributor ID :</label>
+        <select class="form-control" id="distributorId" #distributorId="ngModel" class="col-sm-4 col-form-label" name="distributorId" ngModel required>
+          <option selected value="">Choose Distributor Id</option>
+          <option *ngFor="let distributorId of distributorIds" value="{{distributorId}}">{{distributorId}}</option>
+        </select>
+        <div *ngIf="distributorId.invalid && (distributorId.dirty || distributorId.touched)" class="alert alert-danger">
+            <small *ngIf="distributorId.errors.required">
+                Please choose the Distributor Id.
+            </small>
+        </div>
+      </div>
+      <button [disabled]="displayDistributorForm.form.invalid" class="btn btn-primary"> Display Distributor </button>
+      </form>
+</div>
+<div *ngIf=" distributorDto != null">
+  <div class="jumbotron">
+    <table class="table table-dark">
+      <thead>
+        <tr>                 
+          <th scope="col">Distributor Id</th>
+          <th scope="col">Distributor Name</th>
+          <th scope="col">Address </th>
+          <th scope="col">Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{distributorDto.distributorId}}</td>
+          <td>{{distributorDto.distributorName}}</td>
+          <td>{{distributorDto.address}}</td>
+          <td>{{distributorDto.phoneNumber}}</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

@@ -1,0 +1,57 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <a class="navbar-brand" href="#"> Drink And Delight </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Raw Material
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-item bg-dark"  routerLink="#"> Place Order </a>
+          <a class="nav-link dropdown-item bg-dark"  routerLink="#"> Update  Order </a>
+          <a class="nav-link dropdown-item bg-dark"  routerLink="DisplayRawMaterialOrder"> Display Order </a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Product
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-item bg-dark"  routerLink="#"> Place Order </a>
+          <a class="nav-link dropdown-item bg-dark"  routerLink="#"> Update  Order </a>
+          <a class="nav-link dropdown-item bg-dark"  routerLink="DisplayProductOrder"> Display Order </a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Supplier
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-item bg-dark"  routerLink="#"> Add Supplier </a>
+          <a class="nav-link dropdown-item bg-dark"  routerLink="DisplaySupplierDetails"> Display Supplier Details </a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Distributor
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link dropdown-item bg-dark"  routerLink="#"> Add Distributor </a>
+          <a class="nav-link dropdown-item bg-dark"  routerLink="DisplayDistributorDetails"> Display Distributor Details </a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<div class="text-center">
+  <h2>{{"Welcome to "+ title | titlecase}}</h2> 
+</div>
+<router-outlet></router-outlet>
